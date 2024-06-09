@@ -1,4 +1,5 @@
-import { Container, Text, VStack, Box, Spinner } from "@chakra-ui/react";
+import { Container, Text, VStack, Box, Spinner, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useEvents } from "../integrations/supabase/index.js";
 
 const Index = () => {
@@ -35,6 +36,9 @@ const Index = () => {
               <Text>Starred: {event.is_starred ? "Yes" : "No"}</Text>
               <Text>Private: {event.private ? "Yes" : "No"}</Text>
               <Text>Cancelled: {event.cancelled ? "Yes" : "No"}</Text>
+              <Link to={`/edit-event/${event.id}`}>
+                <Button colorScheme="blue" mt={2}>Edit</Button>
+              </Link>
             </Box>
           ))
         )}
