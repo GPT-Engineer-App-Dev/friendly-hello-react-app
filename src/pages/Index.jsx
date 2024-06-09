@@ -1,4 +1,4 @@
-import { Container, Text, VStack, Box, Spinner, Button } from "@chakra-ui/react";
+import { Container, Text, VStack, Box, Spinner, Button, SimpleGrid } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useEvents } from "../integrations/supabase/index.js";
 
@@ -22,14 +22,14 @@ const Index = () => {
   }
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="4xl" fontWeight="bold">Events</Text>
+    <Container centerContent maxW="container.xl" py={8}>
+      <Text fontSize="4xl" fontWeight="bold" mb={8}>Events</Text>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={4} width="100%">
         {events.length === 0 ? (
           <Text>No events found.</Text>
         ) : (
           events.map((event) => (
-            <Box key={event.id} p={4} borderWidth={1} borderRadius="lg" boxShadow="lg" width="100%">
+            <Box key={event.id} p={4} borderWidth={1} borderRadius="lg" boxShadow="lg">
               <Text fontSize="xl" fontWeight="bold">{event.name}</Text>
               <Text>Date: {event.date}</Text>
               <Text>Venue: {event.venue_id}</Text>
@@ -42,7 +42,7 @@ const Index = () => {
             </Box>
           ))
         )}
-      </VStack>
+      </SimpleGrid>
     </Container>
   );
 };
